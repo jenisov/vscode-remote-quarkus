@@ -3,12 +3,12 @@
 # Licensed under the MIT License. See LICENSE in the project root for license information.
 #-----------------------------------------------------------------------------------------
 
-FROM oracle/graalvm-ce:19.2.1
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17
 
 # install native-image component
 RUN gu install native-image
 
-ENV GRAALVM_HOME=/opt/graalvm-ce-19.2.1
+ENV GRAALVM_HOME=/opt/graalvm-ce-java17-22.0.0.2
 
 # Configure apt
 RUN yum update -y \
