@@ -11,10 +11,10 @@ RUN gu install native-image
 ENV GRAALVM_HOME=/opt/graalvm-ce-java17-22.0.0.2
 
 # Configure apt
-RUN yum update -y \
+RUN microdnf update -y \
     #
     # Install git, process tools, lsb-release (common in install instructions for CLIs)
-    && yum -y install git procps wget \
+    && microdnf -y install git procps wget \
     #
     # Allow for a consistant java home location for settings - image is changing over time
     && if [ ! -d "/docker-java-home" ]; then ln -s "${JAVA_HOME}" /docker-java-home; fi
@@ -38,7 +38,7 @@ ENV MAVEN_CONFIG "/workspaces/vscode-remote-quarkus/.m2"
 ADD settings.xml /usr/share/maven/conf/
 
 # docker
-RUN yum -y install docker-cli.x86_64
+RUN microdnf -y install docker-cli.x86_64
 
 # bash config
 ADD .bashrc /root
