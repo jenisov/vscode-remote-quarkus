@@ -5,10 +5,10 @@ COPY pom.xml .
 RUN mvn clean package -Pnative > /dev/null 2>&1 || :
 # RUN ls -l /root/.m2/repository
 
-FROM oracle/graalvm-ce:19.2.1 as mavenbuilder
+FROM ghcr.io/graalvm/graalvm-ce:ol8-java17 as mavenbuilder
 # Graal vm
 RUN gu install native-image
-ENV GRAALVM_HOME=/opt/graalvm-ce-19.2.1
+ENV GRAALVM_HOME=/opt/graalvm-ce-java17-22.0.0.2
 
 # mvn
 ARG MAVEN_VERSION=3.6.1
